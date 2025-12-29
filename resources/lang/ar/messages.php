@@ -56,4 +56,5 @@ return array (
   'filter_by_notes' => 'تصفية حسب الملاحظات',
   'filter_all_notes' => 'جميع الملاحظات',
   'apply_filters' => 'تطبيق الفلاتر',
+  'no_categories' => 'لا توجد فئات متاحة',
 );

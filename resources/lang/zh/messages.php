@@ -56,4 +56,5 @@ return array (
   'filter_by_notes' => '按笔记筛选',
   'filter_all_notes' => '所有笔记',
   'apply_filters' => '应用筛选器',
+  'no_categories' => '没有可用的类别。',
 );

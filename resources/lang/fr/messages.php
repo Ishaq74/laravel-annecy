@@ -2,6 +2,7 @@
 
 return array (
     'no_results_found' => 'Aucun résultat trouvé.',
+    'no_categories' => 'Aucune catégorie disponible.',
   'welcome' => 'Bienvenue sur Ville Numérique',
   'dashboard' => 'Tableau de bord',
   'profile' => 'Profil',

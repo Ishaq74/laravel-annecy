@@ -56,4 +56,5 @@ return array (
   'filter_by_notes' => 'Фильтр по заметкам',
   'filter_all_notes' => 'Все заметки',
   'apply_filters' => 'Применить фильтры',
+  'no_categories' => 'Нет доступных категорий.',
 );

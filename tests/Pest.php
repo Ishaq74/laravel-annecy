@@ -42,6 +42,7 @@ expect()->extend('toBeOne', function () {
 |
 */
 
+
 /**
  * Minimal helper: perform a localized GET request and assert the response contains a word.
  * Usage: localizedGetAndSee('explore', 'it', 'Filtra');
@@ -61,6 +62,26 @@ function localizedGetAndSee(string $routeName, string $locale, string $word): vo
     $response = test()->get($url);
     $response->assertOk();
     $response->assertSee($word);
+}
+
+/**
+ * Helper: perform a localized GET request and assert the response does NOT contain a word.
+ * Usage: localizedGetAndDontSee('explore', 'fr', 'Aucun résultat trouvé.');
+ */
+function localizedGetAndDontSee(string $routeName, string $locale, string $word): void
+{
+    app()->setLocale($locale);
+
+    if (Illuminate\Support\Facades\Route::has("{$locale}.{$routeName}")) {
+        $url = route("{$locale}.{$routeName}");
+    } else {
+        $path = $routeName === 'home' ? '/' : (str_starts_with($routeName, '/') ? $routeName : '/'.$routeName);
+        $url = app(\Mcamara\LaravelLocalization\LaravelLocalization::class)->getLocalizedURL($locale, $path);
+    }
+
+    $response = test()->get($url);
+    $response->assertOk();
+    $response->assertDontSee($word);
 }
 
 

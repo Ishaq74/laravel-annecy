@@ -58,4 +58,5 @@ return array (
   'filter_by_notes' => 'नोट्स द्वारा फ़िल्टर करें',
   'filter_all_notes' => 'सभी नोट्स',
   'apply_filters' => 'फ़िल्टर लागू करें',
+  'no_categories' => 'कोई श्रेणियाँ उपलब्ध नहीं हैं।',
 );

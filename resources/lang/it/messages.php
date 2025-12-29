@@ -56,4 +56,5 @@ return array (
   'filter_by_notes' => 'Filtra per note',
   'filter_all_notes' => 'Tutte le note',
   'apply_filters' => 'Applica filtri',
+  'no_categories' => 'Nessuna categoria disponibile.',
 );

@@ -1,6 +1,6 @@
 <?php
 
-it('renders the ExploreIdenxPage in french', function () {
+it('renders the ExploreIndexPage in french', function () {
     localizedGetAndSee('explore', 'fr', 'Filtrer');
 });
 
@@ -38,4 +38,13 @@ it('renders the ExploreIndexPage in russian', function () {
 
 it('renders the ExploreIndexPage in hindi', function () {
     localizedGetAndSee('explore', 'hi', 'फ़िल्टर करें');
+});
+
+
+it('renders places in french', function () {
+    localizedGetAndDontSee('explore', 'fr', 'Aucun résultat trouvé.');
+});
+
+it('renders categories in french', function () {
+    localizedGetAndDontSee('explore', 'fr', 'Aucune catégorie disponible.');
 });

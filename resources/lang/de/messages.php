@@ -56,4 +56,5 @@ return array (
   'filter_by_notes' => 'Nach Notizen filtern',
   'filter_all_notes' => 'Alle Notizen',
   'apply_filters' => 'Filter anwenden',
+  'no_categories' => 'Keine Kategorien verfügbar.',
 );

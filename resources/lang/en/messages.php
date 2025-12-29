@@ -2,6 +2,7 @@
 
 return array (
     'no_results_found' => 'No results found.',
+    'no_categories' => 'No categories available.',
   'welcome' => 'Welcome to Ville Numérique',
   'dashboard' => 'Dashboard',
   'profile' => 'Profile',
@@ -56,4 +57,5 @@ return array (
   'filter_by_notes' => 'Filter by notes',
   'filter_all_notes' => 'All notes',
   'apply_filters' => 'Apply filters',
+  'no_categories' => 'No categories available.',
 );
