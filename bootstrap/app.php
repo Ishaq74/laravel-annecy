@@ -13,12 +13,11 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'localeSessionRedirect' => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
-            'localizationRedirect'  => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
-            'localeViewPath'        => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
-            'localize'              => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
+            'localeSessionRedirect' => \App\Http\Middleware\LocaleSessionRedirect::class,
+            'localizationRedirect' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
+            'localeViewPath' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
+            'localize' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
+            'redirect.home' => \App\Http\Middleware\RedirectHome::class,
         ]);
     })
-    ->withExceptions(function (Exceptions $exceptions) {
-
-    })->create();
+    ->withExceptions(function (Exceptions $exceptions) {})->create();

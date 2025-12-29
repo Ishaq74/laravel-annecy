@@ -25,5 +25,6 @@ class FolioServiceProvider extends ServiceProvider
                 //
             ],
         ]);
+
     }
 }

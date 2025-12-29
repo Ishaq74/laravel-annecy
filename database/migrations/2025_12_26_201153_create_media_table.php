@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
 
             // CORRECTION ICI : On utilise uuidMorphs au lieu de morphs
-            $table->uuidMorphs('model'); 
+            $table->uuidMorphs('model');
 
             $table->uuid('uuid')->nullable()->unique();
             $table->string('collection_name');

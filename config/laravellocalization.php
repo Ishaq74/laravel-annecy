@@ -5,13 +5,17 @@ return [
     // Uncomment the languages that your site supports - or add new ones.
     // These are sorted by the native name, which is the order you might show them in a language selector.
     // Regional languages are sorted by their base language, so "British English" sorts as "English, British"
-'supportedLocales' => [
+    'supportedLocales' => [
         'fr' => ['name' => 'French', 'script' => 'Latn', 'native' => 'Français', 'regional' => 'fr_FR'],
         'en' => ['name' => 'English', 'script' => 'Latn', 'native' => 'English', 'regional' => 'en_GB'],
         'es' => ['name' => 'Spanish', 'script' => 'Latn', 'native' => 'Español', 'regional' => 'es_ES'],
         'de' => ['name' => 'German', 'script' => 'Latn', 'native' => 'Deutsch', 'regional' => 'de_DE'],
         'zh' => ['name' => 'Chinese', 'script' => 'Hans', 'native' => '简体中文', 'regional' => 'zh_CN'],
         'ar' => ['name' => 'Arabic', 'script' => 'Arab', 'native' => 'العربية', 'regional' => 'ar_SA', 'dir' => 'rtl'],
+        'it' => ['name' => 'Italian', 'script' => 'Latn', 'native' => 'Italiano', 'regional' => 'it_IT'],
+        'pt' => ['name' => 'Portuguese', 'script' => 'Latn', 'native' => 'Português', 'regional' => 'pt_PT'],
+        'ru' => ['name' => 'Russian', 'script' => 'Cyrl', 'native' => 'Русский', 'regional' => 'ru_RU'],
+        'hi' => ['name' => 'Hindi', 'script' => 'Deva', 'native' => 'हिन्दी', 'regional' => 'hi_IN'],
     ],
 
     // Requires middleware `LaravelSessionRedirect.php`.
@@ -45,8 +49,8 @@ return [
     'hideDefaultLocaleInURL' => false,
 
     // If you want to display the locales in particular order in the language selector you should write the order here.
-    //CAUTION: Please consider using the appropriate locale code otherwise it will not work
-    //Example: 'localesOrder' => ['es','en'],
+    // CAUTION: Please consider using the appropriate locale code otherwise it will not work
+    // Example: 'localesOrder' => ['es','en'],
     'localesOrder' => [],
 
     // If you want to use custom language URL segments like 'at' instead of 'de-AT', you can map them to allow the

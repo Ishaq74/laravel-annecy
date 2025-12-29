@@ -13,7 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, TwoFactorAuthenticatable, HasUuids, HasRoles;
+    use HasFactory, HasRoles, HasUuids, Notifiable, TwoFactorAuthenticatable;
 
     /**
      * Les champs remplissables (PRD + Auth).

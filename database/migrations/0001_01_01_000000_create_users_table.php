@@ -14,23 +14,23 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             // PRD: Clé primaire UUID
             $table->uuid('id')->primary();
-            
+
             // PRD: Identifiants
             $table->string('id_authentification')->nullable()->unique()->index(); // Pour OAuth
             $table->string('username')->unique(); // "ville_num_user"
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable(); // Nullable car OAuth possible
-            
+
             // PRD: Profil Public
             $table->string('nom_affichage'); // "Jean Dupond"
             $table->text('bio')->nullable();
             $table->string('avatar_url')->nullable();
-            
+
             // PRD: Préférences & Rôles
             $table->string('role')->default('citoyen'); // citoyen, admin, auteur...
             $table->string('langue_preferee')->default('fr');
-            
+
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes(); // PRD: Suppression douce

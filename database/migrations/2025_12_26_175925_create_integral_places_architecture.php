@@ -2,17 +2,19 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
-    public function up(): void {
-        
+return new class extends Migration
+{
+    public function up(): void
+    {
+
         // 1. TAXONOMIE DES ÉQUIPEMENTS (Groupes)
         Schema::create('amenity_groups', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('internal_code')->unique(); // GRP_SKI, GRP_LUXURY
-            $table->jsonb('name'); 
+            $table->jsonb('name');
             $table->integer('position')->default(0);
             $table->string('ui_style')->default('list'); // badges, icons, list
             $table->timestamps();
@@ -33,13 +35,13 @@ return new class extends Migration {
         // 3. LE LIEU (Place) - INFRASTRUCTURE CORE
         Schema::create('places', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            
+
             // Classification
             $table->foreignUuid('owner_id')->constrained('users');
             $table->foreignUuid('category_id')->constrained('categories');
-            
+
             // Workflow & Qualité
-            $table->string('status')->default('pending')->index(); 
+            $table->string('status')->default('pending')->index();
             $table->boolean('is_verified')->default(false);
             $table->boolean('is_featured')->default(false);
             $table->integer('quality_score')->default(0);
@@ -54,9 +56,9 @@ return new class extends Migration {
             $table->string('country_code', 2)->default('FR');
 
             // Identité (Multilingue)
-            $table->jsonb('name'); 
-            $table->jsonb('slug'); 
-            $table->jsonb('description'); 
+            $table->jsonb('name');
+            $table->jsonb('slug');
+            $table->jsonb('description');
             $table->jsonb('short_description')->nullable();
 
             // Contact
@@ -66,9 +68,9 @@ return new class extends Migration {
             $table->jsonb('socials')->nullable();
 
             // SEO & Exploitation
-            $table->jsonb('seo_data')->nullable(); 
+            $table->jsonb('seo_data')->nullable();
             $table->jsonb('opening_hours')->nullable();
-            
+
             $table->timestamps();
             $table->softDeletes();
         });
@@ -77,7 +79,7 @@ return new class extends Migration {
         Schema::create('amenity_place', function (Blueprint $table) {
             $table->foreignUuid('place_id')->constrained('places')->cascadeOnDelete();
             $table->foreignUuid('amenity_id')->constrained('amenities')->cascadeOnDelete();
-            $table->string('meta_value')->nullable(); 
+            $table->string('meta_value')->nullable();
             $table->primary(['place_id', 'amenity_id']);
         });
 
@@ -87,9 +89,9 @@ return new class extends Migration {
         Schema::create('place_gastronomies', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('place_id')->unique()->constrained('places')->cascadeOnDelete();
-            $table->jsonb('cuisine_types'); 
-            $table->jsonb('dietary_types')->nullable(); 
-            $table->integer('price_level')->default(2); 
+            $table->jsonb('cuisine_types');
+            $table->jsonb('dietary_types')->nullable();
+            $table->integer('price_level')->default(2);
             $table->decimal('avg_price_dish', 6, 2)->nullable();
             $table->integer('michelin_stars')->default(0);
             $table->string('chef_name')->nullable();
@@ -113,10 +115,10 @@ return new class extends Migration {
         Schema::create('place_trails', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('place_id')->unique()->constrained('places')->cascadeOnDelete();
-            $table->string('activity_type')->index(); 
-            $table->string('difficulty')->index(); 
+            $table->string('activity_type')->index();
+            $table->string('difficulty')->index();
             $table->decimal('distance_km', 6, 2);
-            $table->integer('elevation_gain')->nullable(); 
+            $table->integer('elevation_gain')->nullable();
             $table->integer('elevation_loss')->nullable();
             $table->integer('max_altitude')->nullable();
             $table->boolean('is_loop')->default(true);
@@ -139,17 +141,20 @@ return new class extends Migration {
         Schema::create('place_venues', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('place_id')->unique()->constrained('places')->cascadeOnDelete();
-            $table->string('venue_type')->index(); 
+            $table->string('venue_type')->index();
             $table->integer('capacity')->nullable();
             $table->boolean('indoor')->default(true);
             $table->timestamps();
         });
 
-        // Indexation GIN (Performance Recherche)
-        DB::statement('CREATE INDEX places_name_gin ON places USING gin (name)');
+        // Indexation GIN (Performance Recherche) — Postgres only
+        if (DB::getDriverName() === 'pgsql') {
+            DB::statement('CREATE INDEX places_name_gin ON places USING gin (name)');
+        }
     }
 
-    public function down(): void {
+    public function down(): void
+    {
         Schema::dropIfExists('place_venues');
         Schema::dropIfExists('place_shops');
         Schema::dropIfExists('place_trails');

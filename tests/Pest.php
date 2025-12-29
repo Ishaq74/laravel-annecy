@@ -15,6 +15,7 @@ pest()->extend(Tests\TestCase::class)
     ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
     ->in('Feature');
 
+
 /*
 |--------------------------------------------------------------------------
 | Expectations
@@ -41,7 +42,25 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+/**
+ * Minimal helper: perform a localized GET request and assert the response contains a word.
+ * Usage: localizedGetAndSee('explore', 'it', 'Filtra');
+ */
+function localizedGetAndSee(string $routeName, string $locale, string $word): void
 {
-    // ..
+    // ensure locale used to generate named route
+    app()->setLocale($locale);
+
+    if (Illuminate\Support\Facades\Route::has("{$locale}.{$routeName}")) {
+        $url = route("{$locale}.{$routeName}");
+    } else {
+        $path = $routeName === 'home' ? '/' : (str_starts_with($routeName, '/') ? $routeName : '/'.$routeName);
+        $url = app(\Mcamara\LaravelLocalization\LaravelLocalization::class)->getLocalizedURL($locale, $path);
+    }
+
+    $response = test()->get($url);
+    $response->assertOk();
+    $response->assertSee($word);
 }
+
+

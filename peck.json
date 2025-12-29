@@ -1,0 +1,19 @@
+{
+    "preset": "laravel",
+  "ignoreWords": [
+    "Livewire",
+    "Volt",
+    "Flux",
+    "UUID",
+    "Filtra",
+    "Filtrar",
+    "esplora",
+    "explorer"
+  ],
+  "ignorePaths": [
+    "vendor/**",
+    "node_modules/**",
+    "storage/**",
+    "public/**"
+  ]
+}

@@ -9,7 +9,7 @@ return [
         resource_path('views/livewire'),
     ],
     'component_namespaces' => [
-        'layouts' => resource_path('views/layouts'),
+        'layouts' => resource_path('views/components/layouts'),
         'pages' => resource_path('views/pages'),
     ],
     'make_command' => [
