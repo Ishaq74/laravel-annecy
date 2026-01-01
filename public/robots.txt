@@ -1,2 +1,26 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /tableau-de-bord/
+Disallow: /armaturenbrett/
+Disallow: /tablero/
+Disallow: /لوحة-القيادة/
+Disallow: /仪表板/
+Disallow: /api/
+Disallow: /telescope/
+Disallow: /horizon/
+
+# Allow search engines to index public pages
+Allow: /explorer
+Allow: /explore
+Allow: /erkunden
+Allow: /explorar
+Allow: /استكشاف
+Allow: /探索
+
+# Sitemap (update when implemented)
+# Sitemap: https://your-domain.com/sitemap.xml
+
