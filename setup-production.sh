@@ -50,7 +50,7 @@ fi
 
 echo ""
 echo "📦 Installing Node dependencies..."
-npm ci --production=false
+npm ci
 
 echo ""
 echo "🎨 Building assets..."
@@ -69,9 +69,8 @@ php artisan event:cache
 
 echo ""
 echo "🔒 Setting permissions..."
-chmod -R 755 .
-chmod -R 775 storage
-chmod -R 775 bootstrap/cache
+find storage bootstrap/cache -type f -exec chmod 664 {} \;
+find storage bootstrap/cache -type d -exec chmod 775 {} \;
 
 echo ""
 echo "✅ Production setup complete!"
